@@ -70,5 +70,9 @@ pipeline {
       echo 'El pipeline termino exitosamente'
     }
 
+    aborted {
+      echo 'No termino de correr el pipeline fue forzado a terminar'
+    }
+
   }
 }
