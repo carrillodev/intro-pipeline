@@ -74,5 +74,10 @@ pipeline {
       echo 'No termino de correr el pipeline fue forzado a terminar'
     }
 
+    failure {
+      echo 'Algo salio mal'
+      mail(to: 'fcarrillo@na-at.com.mx', subject: 'Error en el pipeline', body: 'Mensaje de error')
+    }
+
   }
 }
