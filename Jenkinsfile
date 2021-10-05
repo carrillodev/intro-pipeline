@@ -1,19 +1,34 @@
 pipeline {
   agent any
   stages {
-    stage('Say Hello') {
+    stage('build') {
       steps {
-        echo "Hello ${MY_NAME}!"
-        echo "Hello ${params.Name}!"
-        sh 'java -version'
+        sh 'echo "Un paso sencillo de una linea"'
+        sh '''
+        echo "Multilinea"\'
+        cd /tmp
+        ls -lrt
+        '''
       }
     }
 
-  }
-  environment {
-    MY_NAME = 'Mary'
-  }
-  parameters {
-    string(name: 'Name', defaultValue: 'whoever you are', description: 'Who should I say hi to?')
+    stage('test: integration y calidad') {
+      steps {
+        sh 'echo "Paso de test: integration y calidad"'
+      }
+    }
+
+    stage('test: funcional') {
+      steps {
+        sh 'echo "Paso de test: funcional"'
+      }
+    }
+
+    stage('aprobacion') {
+      steps {
+        sh 'echo "Paso de deploy: prod"'
+      }
+    }
+
   }
 }
