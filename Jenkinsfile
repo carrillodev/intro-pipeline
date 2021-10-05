@@ -26,9 +26,26 @@ pipeline {
 
     stage('aprobacion') {
       steps {
-        sh 'echo "Paso de deploy: prod"'
+        sh 'echo "Paso de aprobacion"'
       }
     }
 
+    stage('deploy:prod') {
+      input {
+        message 'Presiona OK para continuar'
+        submitter 'user1, user2'
+        parameters {
+          string(name: 'username', defaultValue: 'user', description: 'Nombre de usuario que esta dando el OK')
+        }
+      }
+      steps {
+        sh 'echo "Paso de deploy:prod"'
+        echo "User: ${username} dijo que OK."
+      }
+    }
+
+  }
+  environment {
+    OUTPUT_PATH = './tmp'
   }
 }
