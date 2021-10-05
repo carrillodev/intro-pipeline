@@ -34,7 +34,7 @@ pipeline {
         sh 'echo "Paso de test: integration y calidad"'
         sh 'pwd'
         sh 'chmod 777 ./myscript.sh'
-        sh 'myscript.sh'
+        sh './myscript.sh'
       }
     }
 
