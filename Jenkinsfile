@@ -36,8 +36,11 @@ pipeline {
     }
 
     stage('test: funcional') {
+      when {
+        branch 'test'
+      }
       steps {
-        sh 'echo "Paso de test: funcional"'
+        sh 'echo "Ejecucion de pruebas en rama test"'
       }
     }
 
